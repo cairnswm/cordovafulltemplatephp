@@ -1,0 +1,22 @@
+1. Register API
+2. Login API
+3. Forgot Password API
+4. Ajax Register
+5. Ajax Login
+6. Ajax Forgot
+7. Home.html - logged in page
+
+Release
+
+8. Create copy for BRclassic
+9. Change login to query BRclassic API
+10. list teams - get team names
+11. Save into local storage
+12. Get players for team
+13. get league
+14. get mail
+15. write mail
+16. get fixtures
+17. read Lineup
+18. write lineup
+19. Read scores

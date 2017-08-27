@@ -1,0 +1,20 @@
+
+D:\CairnsGames\phpexec>d:\xampp\php\php.exe "D:\CairnsGames\phpexec\phpunit.phar" -v D:\xampp\htdocs\cordovafulltemplatephp\unitTests\  
+PHPUnit 5.7.21 by Sebastian Bergmann and contributors.
+
+Runtime:       PHP 5.6.14
+
+E..                                                                3 / 3 (100%)
+
+Time: 149 ms, Memory: 8.75MB
+
+There was 1 error:
+
+1) ajaxUserTest::testInvalidAction
+Array to string conversion
+
+D:\xampp\htdocs\cordovafulltemplatephp\ajaxUser.php:33
+D:\xampp\htdocs\cordovafulltemplatephp\unitTests\ajaxUserTest.php:26
+
+ERRORS!
+Tests: 3, Assertions: 6, Errors: 1.

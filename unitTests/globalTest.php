@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 $baseDir = realpath(dirname(__FILE__));
-include_once $baseDir."\..\global.php";
+include_once $baseDir."\..\common\global.php";
 
 class globalTest extends TestCase
 {

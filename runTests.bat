@@ -1,5 +1,5 @@
 set current=%CD%
-cd \CairnsGames\phpexec
+cd \phpexec
 phpunit -v "%current%"\unitTests\ >"%current%"\unitTests\testOutput.txt
 cd "%current%"
 

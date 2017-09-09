@@ -1,7 +1,7 @@
 <?php
 use PHPUnit\Framework\TestCase;
 $baseDir = realpath(dirname(__FILE__));
-include_once $baseDir."\..\global.php";
+include_once $baseDir."\..\common\global.php";
 
 class ajaxUserTest extends TestCase
 {
@@ -18,7 +18,7 @@ class ajaxUserTest extends TestCase
         $this->expectOutputString('{"status":"E","error":1002,"message":"Invalid username\/password"}');
         $_GET["action"] = "login";
         $_POST = "";
-        include $baseDir."\..\ajaxUser.php"; 
+        include $baseDir."\..\ajaxUser.php";
     }
     public function testInvalidLoginNoUsername()
     {
@@ -51,7 +51,7 @@ class ajaxUserTest extends TestCase
         $this->expectOutputString('{"status":"S","data":"Login successful"}');
         $_GET["action"] = "login";
         $_POST["loginuser"] = "cairnswm";
-        $_POST["loginpassword"] = "yolandec";
+        $_POST["loginpassword"] = "password";
         include $baseDir."\..\ajaxUser.php"; 
     }
 

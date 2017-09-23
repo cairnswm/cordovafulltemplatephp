@@ -1,4 +1,6 @@
 <?php
+include_once('common\config.db.php');
+
 class userLogin
 {
     // property declaration

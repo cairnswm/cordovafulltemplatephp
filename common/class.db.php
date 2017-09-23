@@ -84,7 +84,7 @@ class DB
             echo $message;   
         }
     }
-    
+
     
     public function __construct()
     {
@@ -459,7 +459,7 @@ class DB
         {
             return false;
         }
-        
+
         $sql = "INSERT INTO ". $table;
         $fields = array();
         $values = array();
@@ -534,7 +534,7 @@ class DB
             return true;
         }
     }
-    
+
     
     /**
      * Insert multiple records in a single query into a database table
@@ -917,15 +917,18 @@ class DB
         }
         return self::$inst;
     }
-    
-    
+
+
     /**
      * Disconnect from db server
      * Called automatically from __destruct function
      */
     public function disconnect()
     {
+        if( self::$inst != null )
+        {
         $this->link->close();
+        }
     }
 
 } //end class DB

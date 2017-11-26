@@ -392,6 +392,33 @@ class DB
             return $r;   
         }
     }
+
+    /**
+     * Return specific row based on db query as an array
+     *
+     * Example usage:
+     * user = $database->get_array( "SELECT name, email FROM users WHERE user_id = 44" );
+     *
+     * @access public
+     * @param string
+     * @return array
+     *
+     */
+    public function get_array( $query )
+    {
+        self::$counter++;
+        $row = $this->link->query( $query );
+        if( $this->link->error )
+        {
+            $this->log_db_errors( $this->link->error, $query );
+            return false;
+        }
+        else
+        {
+            $r = $row->fetch_array();
+            return $r;   
+        }
+    }    
     
     
     /**

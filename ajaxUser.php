@@ -1,14 +1,14 @@
 <?php
 // Uses POST to send JSON data from client
-// Saves data to mtSQL table
+// Saves data to mySQL table
 
 // add functions here
 
-// I did that again
 include_once "common/global.php";
+include_once "common/config.db.php";
 include_once "classUserLogin.php";
 
-$userlogin = new userLogin();
+$userlogin = new userLogin($database);
 
 /* Get Posted values 
    print_r($_POST); */
@@ -23,22 +23,7 @@ if (isset($_POST))
 else
   { $data = Array(); }
 
-if ($action === "login")
-{
-  $result = $userlogin->Login($data);
-}
-else if ($action === "forgot")
-{
-  $result = $userlogin->Forgot($data);
-}
-else if ($action === "register")
-{
-  $result = $userlogin->Register($data);
-}
-else
-{
-  $result = createError(1001,"Invalid Action");
-}
+$result = $userlogin->action($action,$data);
 
 echo json_encode($result);
 

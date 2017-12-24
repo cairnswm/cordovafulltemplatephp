@@ -1,5 +1,5 @@
 <?php
-include_once('common\class.db.php');
+include_once('common/class.db.php');
 
 class userLogin
 {
@@ -17,7 +17,6 @@ class userLogin
     {
       $this->db = $database;      
     }
-
 
     public function action($action, $data)
     {
@@ -65,7 +64,7 @@ class userLogin
     public function Forgot($data)
     {
       // TODO: Check user exists (username or email address)
-      // TODO: send email to user
+      // TODO: Send email to user
       if (!isset($data["forgotuser"])) { $result = createError(1003,"No username provided"); }
       else
         { $result = createSuccess("Reminder email sent"); }
@@ -74,7 +73,7 @@ class userLogin
     
     public function Register($data)
     {
-      // TODO: Scenarioas not covered
+      // TODO: Scenarios not covered
       // 1. Reregister a username
       // 2. Reregister an email
       // TODO: Send email to registered address (can be used to confirm registration or just as a link to remind them about the app)

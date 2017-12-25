@@ -7,15 +7,9 @@
 $baseDir = realpath(dirname(__FILE__));
 include_once $baseDir."/common\global.php";
 include_once $baseDir."/common/config.db.php";
-include_once $baseDir."/classes/classUserLogin.php";
+include_once $baseDir."/classes/classData.php";
 
-      if (!isset($database))
-      {
-        $result = createError(1999,"No database error");
-        return $result;
-      }
-$userlogin = new userLogin($database);
-
+$db = new DataLayer($database);
 
 /* Get Posted values 
    print_r($_POST); */
@@ -30,7 +24,7 @@ if (isset($_POST))
 else
   { $data = Array(); }
 
-$result = $userlogin->action($action,$data);
+$result = $db->action($action,$data);
 
 echo json_encode($result);
 

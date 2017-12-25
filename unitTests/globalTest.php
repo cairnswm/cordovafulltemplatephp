@@ -32,5 +32,17 @@ class globalTest extends TestCase
         $this->assertEquals(2,count($json));
         $this->assertEquals(1,count($json["data"]));
     }    
+    public function TestSanitizeAsInt()
+    {
+        $this->AssertEquals(SanitizeAsInt(1),1);
+        $this->AssertEquals(SanitizeAsInt("1"),1);
+        $this->AssertEquals(SanitizeAsInt(1,0),1);
+        $this->AssertEquals(SanitizeAsInt("1",0),1);
+        $this->AssertEquals(SanitizeAsInt("One"),0);
+        $this->AssertEquals(SanitizeAsInt("0ne",1),1);
+        $this->AssertEquals(SanitizeAsInt("1A"),0);
+        $this->AssertEquals(SanitizeAsInt("1A",1),1);
+
+    }
 }
 ?>

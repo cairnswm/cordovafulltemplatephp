@@ -1,9 +1,7 @@
 <?php
-$baseDir = realpath(dirname(__FILE__));
-include_once $baseDir."/../common\global.php";
-include_once $baseDir."/../common/config.db.php";
+include_once('common/class.db.php');
 
-class userLogin
+class DataLayer
 {
     // property declaration
     public $var = 'a default value';
@@ -17,54 +15,28 @@ class userLogin
 
     public function __construct($database) 
     {
-      if (!isset($database))
-      {
-        $result = createError(1999,"No database error");
-        return $result;
-      }
       $this->db = $database;      
     }
 
     public function action($action, $data)
     {
-      if ($action === "login")
+      if ($action === "list")
       {
-        $result = $this->Login($data);
-      }
-      else if ($action === "forgot")
-      {
-        $result = $this->Forgot($data);
-      }
-      else if ($action === "register")
-      {
-        $result = $this->Register($data);
+        $result = $this->ListData($data);
       }
       else
       {
         $result = createError(1001,"Invalid Action");
-      }
+      } 
       return $result;
     }
 
-    public function Login($data)
+    public function ListData($data)
     {      
-      if (!isset($data['loginuser'])) {  $result = createError(1002,"Invalid username/password"); }
-      else if (!isset($data['loginpassword'])) {  $result = createError(1002,"Invalid username/password"); }
-      else 
-      { // Validate username/password vs database
-        if ($user = $this->db->get_array("Select id, username, fullname from users where (username = '".$data['loginuser']."' or email = '".$data['loginuser']."') and password = '".$data['loginpassword']."'"))
-          { 
-            // Create and return token
-            $guid = GUID();
-            $ipaddress = $_SERVER['REMOTE_ADDR'];
-            $this->db->query("update user_session set status = 0, last_page = 'autologout' where user_id = '".$user["id"]."'");
-            $this->db->query("insert into user_session (session_id, user_id, username, ip_address, last_page, status) values ('$guid','".$user["id"]."','".$user["username"]."','".$ipaddress."','Login',1)");
-            $data = Array('token' => $guid, 'message' => "Login successful");
-            $result = createSuccess($data); 
-          }
-        else
-  	      { $result = createError(1002,"Invalid username/password"); }
-      }
+      if (isset($data['start'])) {  $start = SanitizeAsInt($data['start'],0); } else { $start = 0; }
+      if (isset($data['pagesize'])) {  $pagesize = SanitizeAsInt($data['pagesize'],20); } else { $pagesize = 20; }
+      $data = $this->db->get_results("Select id, name, detail from data_table limit $start, $pagesize");
+      $result = createSuccess($data); 
       return $result;
     }
 
